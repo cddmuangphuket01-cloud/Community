@@ -1,0 +1,8 @@
+{
+  "name": "student-information-system",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": { "dev": "python -m http.server 5173", "preview": "python -m http.server 5173" },
+  "dependencies": { "@supabase/supabase-js": "2.57.0" }
+}
