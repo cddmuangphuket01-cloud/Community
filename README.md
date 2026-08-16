@@ -2,27 +2,24 @@
 
 เว็บแอปสำหรับจัดเก็บ ค้นหา เพิ่ม แก้ไข และลบข้อมูลนักเรียน โดยใช้ Supabase PostgreSQL เป็นฐานข้อมูล
 
-## เทคโนโลยี
-- HTML/CSS/JavaScript (ES Modules)
-- Supabase JS
-- Supabase Auth (Magic Link)
-- Supabase PostgreSQL + Row Level Security (RLS)
+## ฟีเจอร์
+- เข้าสู่ระบบด้วย Magic Link
+- Dashboard สรุปจำนวนนักเรียนทั้งหมด/กำลังศึกษา/ชาย/หญิง
+- ค้นหาและกรองสถานะ
+- เพิ่ม แก้ไข และลบข้อมูล
+- Responsive สำหรับคอมพิวเตอร์และมือถือ
 
-## ฐานข้อมูล
-โปรเจกต์ Supabase: `elakjcjdtmhacrcgpuuk`
-ตารางหลัก: `public.students`
+## Supabase
+Project ref: `elakjcjdtmhacrcgpuuk`
+Table: `public.students`
 
-ตารางมีข้อมูลรหัสนักเรียน ชื่อ-นามสกุล ชื่อเล่น เพศ วันเกิด โรงเรียน ชั้น ห้อง เลขที่ ผู้ปกครอง เบอร์โทร ที่อยู่ สถานะ และหมายเหตุ
+RLS เปิดใช้งานและอนุญาตเฉพาะ `authenticated` ในการอ่าน/เพิ่ม/แก้ไข/ลบข้อมูล ส่วน `anon` ถูกปิดสิทธิ์
+
+## GitHub Pages
+สาขาที่พัฒนา: `agent/student-record-app`
+หลังตรวจสอบแล้วให้ merge เข้า `main` และเปิด Settings → Pages → Deploy from branch → `main` / root
 
 ## ความปลอดภัย
-- เปิด RLS ที่ `public.students`
-- อนุญาตเฉพาะผู้ใช้ที่ authenticated ในการอ่าน/เพิ่ม/แก้ไข/ลบ
-- ใช้ Supabase publishable key สำหรับฝั่ง browser
-- ห้ามนำ `service_role` หรือ secret key มาใส่ใน frontend
+ใช้เฉพาะ Supabase publishable key บน browser ห้ามใส่ service role/secret key ใน frontend
 
-## การใช้งาน
-เปิด `index.html` ผ่าน static hosting ได้ เช่น GitHub Pages, Netlify หรือ Cloudflare Pages
-
-หากนำไปใช้กับ GitHub Pages ให้เปิดใช้งาน Pages จาก branch `main` หลัง merge สาขา `agent/student-record-app`
-
-> ข้อมูลนักเรียนเป็นข้อมูลส่วนบุคคล ควรจำกัดบัญชีผู้ใช้งานและสิทธิ์การเข้าถึงให้เหมาะสมก่อนใช้งานจริง
+ข้อมูลนักเรียนเป็นข้อมูลส่วนบุคคล ควรใช้งานในบัญชีและสภาพแวดล้อมที่มีการควบคุมสิทธิ์อย่างเหมาะสม
