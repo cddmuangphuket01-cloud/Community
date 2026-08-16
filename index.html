@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ระบบจัดเก็บข้อมูลนักเรียน" />
+  <title>ระบบข้อมูลนักเรียน</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><div class="brand-icon">🎓</div><div><h1>ระบบข้อมูลนักเรียน</h1><p>Student Information System</p></div></div>
+    <div id="authArea"><button id="loginBtn" class="btn btn-light">เข้าสู่ระบบ</button></div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div><span class="eyebrow">SUPABASE DATABASE</span><h2>จัดเก็บและค้นหาข้อมูลนักเรียน</h2><p>ข้อมูลบันทึกโดยตรงไปยังฐานข้อมูล Supabase พร้อมระบบสิทธิ์ RLS</p></div>
+      <button id="addBtn" class="btn btn-primary" disabled>＋ เพิ่มข้อมูลนักเรียน</button>
+    </section>
+
+    <section class="stats">
+      <div class="stat"><span>นักเรียนทั้งหมด</span><strong id="totalCount">0</strong></div>
+      <div class="stat"><span>กำลังศึกษา</span><strong id="activeCount">0</strong></div>
+      <div class="stat"><span>ชาย</span><strong id="maleCount">0</strong></div>
+      <div class="stat"><span>หญิง</span><strong id="femaleCount">0</strong></div>
+    </section>
+
+    <section class="panel">
+      <div class="toolbar"><div class="search"><span>⌕</span><input id="searchInput" placeholder="ค้นหาชื่อ นามสกุล รหัสนักเรียน หรือโรงเรียน..." /></div><select id="statusFilter"><option value="">ทุกสถานะ</option><option>กำลังศึกษา</option><option>ย้ายออก</option><option>จบการศึกษา</option><option>พักการเรียน</option></select><button id="refreshBtn" class="btn btn-outline">รีเฟรช</button></div>
+      <div id="message" class="message hidden"></div>
+      <div class="table-wrap"><table><thead><tr><th>รหัส</th><th>ชื่อ-นามสกุล</th><th>เพศ</th><th>โรงเรียน</th><th>ชั้น/ห้อง</th><th>ผู้ปกครอง</th><th>สถานะ</th><th></th></tr></thead><tbody id="studentTable"><tr><td colspan="8" class="empty">กรุณาเข้าสู่ระบบเพื่อดูข้อมูล</td></tr></tbody></table></div>
+    </section>
+  </main>
+
+  <dialog id="studentDialog"><form id="studentForm" method="dialog">
+    <div class="dialog-head"><div><h3 id="dialogTitle">เพิ่มข้อมูลนักเรียน</h3><p>กรอกข้อมูลที่จำเป็นให้ครบถ้วน</p></div><button type="button" class="icon-btn" id="closeDialog">×</button></div>
+    <input type="hidden" id="studentId" />
+    <div class="form-grid">
+      <label>รหัสนักเรียน<input id="studentCode" /></label><label>ชื่อ *<input id="firstName" required /></label><label>นามสกุล *<input id="lastName" required /></label><label>ชื่อเล่น<input id="nickname" /></label>
+      <label>เพศ<select id="gender"><option value="ไม่ระบุ">ไม่ระบุ</option><option>ชาย</option><option>หญิง</option></select></label><label>วันเกิด<input id="birthDate" type="date" /></label><label>โรงเรียน<input id="schoolName" /></label><label>ระดับชั้น<input id="gradeLevel" placeholder="เช่น ป.6 / ม.3" /></label><label>ห้อง<input id="classRoom" /></label><label>เลขที่<input id="studentNumber" type="number" min="1" /></label><label>ชื่อผู้ปกครอง<input id="parentName" /></label><label>โทรศัพท์ผู้ปกครอง<input id="parentPhone" inputmode="tel" /></label><label class="full">ที่อยู่<textarea id="address" rows="2"></textarea></label><label>สถานะ<select id="status"><option>กำลังศึกษา</option><option>ย้ายออก</option><option>จบการศึกษา</option><option>พักการเรียน</option></select></label><label class="full">หมายเหตุ<textarea id="notes" rows="2"></textarea></label>
+    </div>
+    <div class="dialog-actions"><button type="button" id="cancelBtn" class="btn btn-outline">ยกเลิก</button><button class="btn btn-primary" type="submit">บันทึกข้อมูล</button></div>
+  </form></dialog>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
